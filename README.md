@@ -2,7 +2,7 @@
 This is a simple python command line messaging app, originally created as a project for Computer Networks course at the University of New South Wales.
 
 
-### Setting up the Virtual Environment
+## Setting up the Virtual Environment
 * For Windows:
    * Install
    ```
