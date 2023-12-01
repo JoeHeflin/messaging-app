@@ -1,4 +1,4 @@
-#Message Client (Python version 2.7)
+#Message Client (Python version 3.10.8)
 #Arguments: address, port #
 
 import sys, socket, threading, select, time

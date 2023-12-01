@@ -1,4 +1,4 @@
-#Message Server (Python version 2.7)
+#Message Server (Python version 3.10.8)
 #Arguments: port #, block duration, timeout length
 
 import sys, socket, threading, time
