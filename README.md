@@ -33,7 +33,7 @@ pip3 install -r requirements.txt
 ## server.py
 To start server
 ```
-python MsgServer.py <port number> <block duration> <timeout>
+python server.py <port number> <block duration> <timeout>
 ```
 All arguments are required
 - Port number: port number for the server to listen/prompt clients over.
@@ -42,14 +42,14 @@ All arguments are required
 
 For example
 ```
-python MsgServer.py 8080 30 50
+python server.py 8080 30 50
 ```
 
 ## client.py
 address, port #
 To start client session
 ```
-python MsgClient.py <ip address> <port number>
+python client.py <ip address> <port number>
 ```
 All arguments are required
 - IP address: ipv4 address of active server script.
@@ -57,7 +57,7 @@ All arguments are required
 
 For example
 ```
-python MsgClient.py 127.0.0.1 8080
+python client.py 127.0.0.1 8080
 ```
 Note: 127.0.0.1 is the address of the local host (the device running the script)
 
