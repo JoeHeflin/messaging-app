@@ -57,6 +57,7 @@ class ClientConnection(threading.Thread):
 		print("Exiting thread for "+self.user)
 		return
 
+	# Direct incomming client messages to appropriate functions
 	def clientSwitch(self,arg):
 		command = arg[0]
 		switcher ={
@@ -164,22 +165,13 @@ class ClientConnection(threading.Thread):
 			self.sock.send("sendmsg Invalid command format, try: message <user> <messgae>\z".encode())
 
 	def logout(self):
-		# print("logout")
 		if self.user in onlinelist:
 			del onlinelist[self.user]
 			for person in onlinelist:
-				# print(person)
 				if(person not in blockedUsers):
-					# print("2")
-					# print(blockedUsers)
-					# print(person)
 					onlinelist[person][0].sock.send(("sendmsg "+self.user+" is no longer online\z").encode())
-					# print("3")
 				elif (self.user not in blockedUsers[person]):
 					onlinelist[person][0].sock.send(("sendmsg "+self.user+" is no longer online\z").encode())
-				# 	print("4")
-				# print("5")
-		# print("1")
 		self.pulse = False
 		self.sock.send("logout".encode())
 		print("User logged out, bye "+self.user)
@@ -260,7 +252,7 @@ address = ('localhost', port)
 welcomeSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 welcomeSocket.bind(address)
 
-# create new socket connection and thread when requested
+# create new socket connection and thread when requested by client
 while(1):
 	print("Waiting for New Client Connection")
 	welcomeSocket.listen(1)

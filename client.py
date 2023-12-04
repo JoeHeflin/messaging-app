@@ -14,8 +14,6 @@ username = ""
 
 sock.connect(address)
 
-#Protocol: send prompts from server in same format as command line prompts
-
 def login(arg): 
 	arg = arg.split(" ")
 	switcher = {
@@ -29,6 +27,7 @@ def login(arg):
 	except:
 		return switcher[command]()
 
+# Direct incomming server messages and cli commands to appropriate functions
 def keyboardSwitch(arg):
 	switcher = {
 		"login" : login,
@@ -114,7 +113,6 @@ class keyThread (threading.Thread):
 				readIn = sys.stdin.readline()[0:-1]
 				if readIn.split(" ")[0] == "private":
 					try:
-					#print("PRIVATE"+readIn)
 						keyboardSwitch(readIn.split(" ",1))
 					except:
 						print("Wrong format, try: private <user> <msg>")
@@ -126,7 +124,7 @@ class keyThread (threading.Thread):
 				else:
 					sock.send(readIn.encode())
 
-# thread to listen on server connectionf
+# thread to listen on server connection
 class serverThread (threading.Thread):
 	def __init__(self, arg):
 		threading.Thread.__init__(self)
@@ -136,9 +134,7 @@ class serverThread (threading.Thread):
 		while(pulse):
 			sockBuffer = ""
 			try:
-				# print("try")
 				data = sock.recv(2048).decode()
-				# print(data)
 			except:
 				data = ""
 			if data == "":
@@ -147,7 +143,6 @@ class serverThread (threading.Thread):
 				sockBuffer = sockBuffer + data
 				toDo = sockBuffer.split("\z")
 				for msg in toDo:
-					# print(msg)
 					if msg == "":
 						continue
 					else:
